@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>みんなのダイニング</title>
   <style>
     body {
       font-family: "メイリオ", sans-serif;
-      background-color: #ffffff;
-      color: #333;
+      background-color: #fff;
       text-align: center;
-      padding: 50px 20px;
+      padding: 40px 20px;
     }
     h1 {
       font-size: 28px;
       margin-bottom: 40px;
-      color: #222;
     }
-    .start-button {
-      background-color: #06C755;
-      color: white;
-      font-size: 22px;
-      padding: 20px 30px;
-      border: none;
+    .button {
+      display: block;
+      margin: 20px auto;
+      padding: 18px 24px;
+      font-size: 20px;
       border-radius: 12px;
-      cursor: pointer;
       text-decoration: none;
-      display: inline-block;
+      color: white;
+      width: 80%;
+      max-width: 300px;
+      line-height: 1.4;
     }
-    .emoji {
-      font-size: 32px;
-      margin-bottom: 16px;
+    .open-btn {
+      background-color: #007BFF; /* 青 */
+    }
+    .closed-btn {
+      background-color: #28a745; /* 緑 */
+    }
+    .guide {
+      display: block;
+      margin-top: 40px;
+      font-size: 16px;
+      color: #0066cc;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="emoji">👵👴</div>
-  <h1>みんなのダイニング</h1>
 
-  <!-- ✅ LINE通話ボタン（友だち or グループIDに置き換え） -->
-  <a href="line://nv/call?id=1234567890" class="start-button">オープンダイニングを開始</a>
+  <h1>みんなの<br>ダイニング</h1>
 
-  <!-- ✅ LIFF初期化 -->
+  <!-- ✅ オープンダイニングボタン -->
+  <a href="line://nv/call?id=xxxxxx" class="button open-btn">
+    👴👵 オープン<br>ダイニング
+  </a>
+
+  <!-- ✅ クローズドダイニングボタン -->
+  <a href="line://nv/call?id=yyyyyy" class="button closed-btn">
+    👴🧒 クローズド<br>ダイニング
+  </a>
+
+  <!-- 使い方ガイドリンク -->
+  <a href="howto.html" class="guide">使い方を見る</a>
+
+  <!-- ✅ LIFF SDKと初期化スクリプト -->
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<script>
-  liff.init({
-    liffId: "2007493051-M8Rmx5Q8"
-  }).then(() => {
-    // LIFF初期化成功後にログインユーザー情報を取得
-    return liff.getProfile();
-  }).then(profile => {
-    const userId = profile.userId;
+  <script>
+    liff.init({
+      liffId: "2007493051-M8Rmx5Q8"
+    }).then(() => {
+      console.log("LIFF initialized!");
+    }).catch((err) => {
+      console.error("LIFF init error:", err);
+    });
+  </script>
 
-    // ✅ 許可されたユーザーIDだけに表示許可
-    const allowedUsers = ['Uxxxxxxxxxxxx', 'Uyyyyyyyyyyyy']; // ←ここに許可IDを入れる
-
-    if (!allowedUsers.includes(userId)) {
-      alert("このページにはアクセスできません。");
-      document.body.innerHTML = ""; // 内容を消す（任意）
-    }
-  }).catch((err) => {
-    console.error("LIFFエラー:", err);
-    alert("エラーが発生しました");
-  });
-</script>
 </body>
 </html>
