@@ -18,7 +18,7 @@
       color: #222;
     }
     .start-button {
-      background-color: #06C755; /* LINEグリーン */
+      background-color: #06C755;
       color: white;
       font-size: 22px;
       padding: 20px 30px;
@@ -38,5 +38,17 @@
   <div class="emoji">👵👴</div>
   <h1>みんなのダイニング</h1>
   <a href="line://nv/call?id=xxxxx" class="start-button">オープンダイニングを開始</a>
+
+  <!-- ✅ ここにLIFF SDKと初期化コードを追加 -->
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script>
+    liff.init({
+      liffId: "2007493051-M8Rmx5Q8"
+    }).then(() => {
+      console.log("LIFF initialized!");
+    }).catch((err) => {
+      console.error("LIFF init error:", err);
+    });
+  </script>
 </body>
 </html>
