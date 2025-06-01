@@ -43,14 +43,26 @@
 
   <!-- ✅ LIFF初期化 -->
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-  <script>
-    liff.init({
-      liffId: "2007493051-M8Rmx5Q8"
-    }).then(() => {
-      console.log("LIFF initialized!");
-    }).catch((err) => {
-      console.error("LIFF init error:", err);
-    });
-  </script>
+<script>
+  liff.init({
+    liffId: "2007493051-M8Rmx5Q8"
+  }).then(() => {
+    // LIFF初期化成功後にログインユーザー情報を取得
+    return liff.getProfile();
+  }).then(profile => {
+    const userId = profile.userId;
+
+    // ✅ 許可されたユーザーIDだけに表示許可
+    const allowedUsers = ['Uxxxxxxxxxxxx', 'Uyyyyyyyyyyyy']; // ←ここに許可IDを入れる
+
+    if (!allowedUsers.includes(userId)) {
+      alert("このページにはアクセスできません。");
+      document.body.innerHTML = ""; // 内容を消す（任意）
+    }
+  }).catch((err) => {
+    console.error("LIFFエラー:", err);
+    alert("エラーが発生しました");
+  });
+</script>
 </body>
 </html>
