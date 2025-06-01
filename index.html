@@ -37,9 +37,11 @@
 <body>
   <div class="emoji">👵👴</div>
   <h1>みんなのダイニング</h1>
-  <a href="line://nv/call?id=xxxxx" class="start-button">オープンダイニングを開始</a>
 
-  <!-- ✅ ここにLIFF SDKと初期化コードを追加 -->
+  <!-- ✅ LINE通話ボタン（友だち or グループIDに置き換え） -->
+  <a href="line://nv/call?id=1234567890" class="start-button">オープンダイニングを開始</a>
+
+  <!-- ✅ LIFF初期化 -->
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     liff.init({
